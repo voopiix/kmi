@@ -1,17 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container"> <!--galvenais konteiners-->
-            <h2>Ķermeņa masas indeksa aprēķināšana</h2>
-            <div class="calculator"><!--kalkulatora konteiners-->
-                <div class="input-container"><!--ievades konteiners-->           
-            
-    
+    <title>Ķermeņa masas indeksa aprēķins</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ķermeņa masas indeksa aprēķināšanas aplikācija</h1>
+        
+        <div class="inputs">
+            <div class="field">
+                <label for="height">Augums (cm)</label>
+                <input type="number" id="height" placeholder="Ievadi augumu">
+            </div>
+            <div class="field">
+                <label for="weight">Svars (kg)</label>
+                <input type="number" id="weight" placeholder="Ievadi svaru">
+            </div>
+        </div>
+
+        <button onclick="calculateBMI()">Aprēķināt</button>
+
+        <div class="result">
+            <label for="bmiResult">Rezultāts (ĶMI)</label>
+            <input type="text" id="bmiResult" readonly>
+        </div>
+
+        <div class="info">
+            <p>Nepietiekama ķermeņa masa – ĶMI &lt; 18,5</p>
+            <p>Normāla ķermeņa masa – ĶMI = 18,5 – 24,99</p>
+            <p>Lieka ķermeņa masa – ĶMI = 25 – 29,99</p>
+            <p>Aptaukošanās – ĶMI &gt; 30</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const heightInput = document.getElementById("height").value;
+            const weightInput = document.getElementById("weight").value;
+
+            const height = parseFloat(heightInput) / 100;
+            const weight = parseFloat(weightInput);
+
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                alert("Lūdzu ievadi derīgus datus!");
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            document.getElementById("bmiResult").value = bmi.toFixed(2);
+        }
+    </script>
 </body>
 </html>
